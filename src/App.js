@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {Switch,Route} from 'react-router-dom'
+import React, { useEffect } from 'react';
+import { Switch, Route } from 'react-router-dom'
 import './App.css';
 import Home from './container/Home';
 import Signin from './container/Singin';
@@ -7,9 +7,11 @@ import Signup from './container/Signup';
 import PrivateRoute from './component/Private/privateRoute';
 import { useDispatch, useSelector } from 'react-redux'
 import { isUserLoggedIn } from './action'
+import Products from './container/Products';
+import Orders from './container/Orders';
 
 
- 
+
 
 function App() {
 
@@ -18,21 +20,25 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-        if (!auth.authenticate) {
-            dispatch(isUserLoggedIn());
-        }
+    if (!auth.authenticate) {
+      dispatch(isUserLoggedIn());
+    }
 
-    },
-        [])
+  },
+    [])
 
   return (
-    
-      <Switch>
-        <PrivateRoute path="/" exact component={Home}/>
-        <Route path="/Signup" component={Signup}/>
-        <Route path="/Signin" component={Signin}/>
-      </Switch>
-    
+
+    <Switch>
+      <PrivateRoute path="/" exact component={Home} />
+      <PrivateRoute path="/products" component={Products} />
+      <PrivateRoute path="/orders" component={Orders} />
+
+
+      <Route path="/Signup" component={Signup} />
+      <Route path="/Signin" component={Signin} />
+    </Switch>
+
   );
 }
 
