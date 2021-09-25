@@ -18,7 +18,7 @@ const initState = {
 
 
 export default (state = initState, action) => {
-    console.log(action);
+    // console.log(action);
     switch (action.type) {
         case authConstant.LOGIN_REQUEST:
             state = {
@@ -57,7 +57,7 @@ export default (state = initState, action) => {
             }
             break;
     }
-    console.log(state);
+    // console.log(state);
     return state;
 
 }

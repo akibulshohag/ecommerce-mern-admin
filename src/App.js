@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { isUserLoggedIn } from './action'
 import Products from './container/Products';
 import Orders from './container/Orders';
+import Category from './container/Category';
 
 
 
@@ -24,13 +25,13 @@ function App() {
       dispatch(isUserLoggedIn());
     }
 
-  },
-    [])
+  },[])
 
   return (
 
     <Switch>
       <PrivateRoute path="/" exact component={Home} />
+      <PrivateRoute path="/category"  component={Category} />
       <PrivateRoute path="/products" component={Products} />
       <PrivateRoute path="/orders" component={Orders} />
 

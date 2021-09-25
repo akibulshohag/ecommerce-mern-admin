@@ -1,8 +1,9 @@
 import React from 'react'
 import { Jumbotron, Container, Row, Col } from 'react-bootstrap'
 import Layout from '../../component/Layout'
-import  './style.css'
+import './style.css'
 import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 /**
 * @author
@@ -10,24 +11,17 @@ import { NavLink } from 'react-router-dom'
 **/
 
 export const Home = (props) => {
+  const auth = useSelector(state => state.auth)
   return (
-    <Layout>
-      <Container fluid>
-        <Row>
-          <Col md={2} className="sidebar">
-            <ul>
-              <li><NavLink to={'/'}>Home</NavLink></li>
-              <li><NavLink to={'/products'}>Products</NavLink></li>
-              <li><NavLink to={'/orders'}>Orders</NavLink></li>
-            </ul>
-          </Col>
-          <Col md={10} style={{marginLeft:'auto'}}> container</Col>
-        </Row>
-      </Container>
-      {/* <div style={{margin:50,backgroundColor:'#fff'}} className="text-center">
-            <h1 style={{fontWeight:'bold',color:'green'}}>Welcome to eHeartz Admin Panel</h1>
-            <p style={{fontSize:30}}>This is a ecommerce website.</p>
-        </div> */}
+    <Layout sidebar>
+      <div style={{ margin: 50, backgroundColor: '#fff' }} className="text-center">
+        <h1 style={{ fontWeight: 'bold', color: 'green' }}>
+          Welcome, Mr. <span style={{color:'skyblue',fontStyle:'italic'}}>{auth?.user?.fullName}</span> to eHeartz Admin Panel
+        </h1>
+        <p style={{ fontSize: 30 }}>
+            This panel is operating by you.`
+        </p>
+      </div>
     </Layout>
   )
 

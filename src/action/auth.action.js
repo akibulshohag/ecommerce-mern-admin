@@ -2,20 +2,14 @@ import axios from "../helper/axios";
 import { authConstant } from "./constant"
 
 export const login = (user) => {
-
-    console.log(user);
-
     return async (dispatch) => {
-
         dispatch({ type: authConstant.LOGIN_REQUEST });
         const res = await axios.post('/adminLogin', {
             ...user
         })
         if (res.status === 200) {
-            const { user, token } = res.data;
-            console.log(res.data)
             localStorage.setItem('token', res?.data?.access_token);
-            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('user', JSON.stringify(res?.data));
             dispatch({
                 type: authConstant.LOGIN_SUCCESS,
                 payload: {
@@ -44,13 +38,12 @@ export const isUserLoggedIn = () => {
             dispatch({
                 type: authConstant.LOGIN_SUCCESS,
                 payload: {
-                    token, user
+                    data: user
                 }
             });
         } else {
             dispatch({
                 type: authConstant.LOGIN_FAILURE,
-
                 payload: {
                     error: 'Failed to login'
                 }
