@@ -25,7 +25,7 @@ export const Layout = (props) => {
                                     <li><NavLink to={'/orders'}><i style={{ marginRight: 5  }} className="fas fa-cart-plus"></i>Orders</NavLink></li>
                                 </ul>
                             </Col>
-                            <Col md={10} style={{ marginLeft: 'auto' }}>
+                            <Col md={10} style={{ marginLeft: 'auto',paddingTop: '60px' }}>
                                 {props.children}
                             </Col>
 

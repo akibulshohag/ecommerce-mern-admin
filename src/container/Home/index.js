@@ -1,8 +1,6 @@
 import React from 'react'
-import { Jumbotron, Container, Row, Col } from 'react-bootstrap'
 import Layout from '../../component/Layout'
 import './style.css'
-import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 /**

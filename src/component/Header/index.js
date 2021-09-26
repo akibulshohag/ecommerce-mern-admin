@@ -1,8 +1,8 @@
 import React from 'react'
-import { Navbar, Nav, NavDropdown, Container, Button } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink, Link, Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { logout } from '../../action';
+import { logout } from './../../store/action';
 
 /**
 * @author
@@ -19,7 +19,7 @@ export const Header = (props) => {
 
     return (
         // <Container>
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{ zIndex: 1 }}>
+        <Navbar collapseOnSelect fixed="top" expand="lg" bg="dark" variant="dark" style={{ zIndex: 1 }}>
             {/* <Container> */}
                 {/* <Navbar.Brand href="#home">Admin Dashboard</Navbar.Brand> */}
                 <Link to="/" className="navbar-brand" >

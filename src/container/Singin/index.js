@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../../component/Layout'
 import { Container, Row, Col, Button, Form } from 'react-bootstrap'
 import Input from '../../component/UI/Input'
-import { login } from '../../action'
+import { login } from './../../store/action'
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 

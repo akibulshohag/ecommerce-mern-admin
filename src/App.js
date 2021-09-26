@@ -6,7 +6,7 @@ import Signin from './container/Singin';
 import Signup from './container/Signup';
 import PrivateRoute from './component/Private/privateRoute';
 import { useDispatch, useSelector } from 'react-redux'
-import { isUserLoggedIn } from './action'
+import { isUserLoggedIn, getAllCategory } from './store/action'
 import Products from './container/Products';
 import Orders from './container/Orders';
 import Category from './container/Category';
@@ -24,7 +24,7 @@ function App() {
     if (!auth.authenticate) {
       dispatch(isUserLoggedIn());
     }
-
+    dispatch(getAllCategory())
   },[])
 
   return (

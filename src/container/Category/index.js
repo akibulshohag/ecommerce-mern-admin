@@ -3,7 +3,7 @@ import { Col, Container, Row, Modal, Button } from 'react-bootstrap';
 import Layout from '../../component/Layout'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllCategory,addCategory } from '../../action';
+import { getAllCategory, addCategory } from './../../store/action';
 import Input from "./../../component/UI/Input";
 
 /**
@@ -18,10 +18,6 @@ export const Category = (props) => {
     const [categoryName, setCategoryName] = useState('');
     const [parentCategoryId, setParentCategoryId] = useState('');
     const [categoryImage, setCategoryImage] = useState('');
-
-    useEffect(() => {
-        dispatch(getAllCategory())
-    }, [])
 
     const renderCategories = (categories) => {
         if (categories?.length) {
@@ -49,7 +45,7 @@ export const Category = (props) => {
             return option
         }
     }
-    const handleClose = () =>{
+    const handleClose = () => {
         setShow(false)
         setCategoryName('');
         setParentCategoryId('');
@@ -85,7 +81,9 @@ export const Category = (props) => {
                     <Col md={12}>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <h3>Category</h3>
-                            <button onClick={handleShow}>Add</button>
+                            <Button variant="secondary" onClick={handleShow}>
+                                Add New
+                            </Button>
                         </div>
                     </Col>
                 </Row>

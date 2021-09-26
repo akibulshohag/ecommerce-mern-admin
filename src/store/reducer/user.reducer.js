@@ -1,4 +1,4 @@
-import { userContants } from "../action/constant"
+import { userContants } from "./../action/constant"
 
 const initState = {
     error: null,

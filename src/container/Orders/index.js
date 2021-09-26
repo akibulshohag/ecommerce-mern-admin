@@ -9,7 +9,7 @@ import Layout from '../../component/Layout'
 export const Orders = (props) => {
   return(
     <Layout sidebar>
-        Orderss
+        Welcome to Order Page
     </Layout>
    )
 
