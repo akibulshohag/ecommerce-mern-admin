@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/ecommerce-mern-admin/static/css/main.da4e120a.chunk.css",
+    "main.js": "/ecommerce-mern-admin/static/js/main.4fe15737.chunk.js",
+    "main.js.map": "/ecommerce-mern-admin/static/js/main.4fe15737.chunk.js.map",
+    "runtime-main.js": "/ecommerce-mern-admin/static/js/runtime-main.92aac231.js",
+    "runtime-main.js.map": "/ecommerce-mern-admin/static/js/runtime-main.92aac231.js.map",
+    "static/js/2.557aff05.chunk.js": "/ecommerce-mern-admin/static/js/2.557aff05.chunk.js",
+    "static/js/2.557aff05.chunk.js.map": "/ecommerce-mern-admin/static/js/2.557aff05.chunk.js.map",
+    "static/js/3.10d76e6e.chunk.js": "/ecommerce-mern-admin/static/js/3.10d76e6e.chunk.js",
+    "static/js/3.10d76e6e.chunk.js.map": "/ecommerce-mern-admin/static/js/3.10d76e6e.chunk.js.map",
+    "index.html": "/ecommerce-mern-admin/index.html",
+    "static/css/main.da4e120a.chunk.css.map": "/ecommerce-mern-admin/static/css/main.da4e120a.chunk.css.map",
+    "static/js/2.557aff05.chunk.js.LICENSE.txt": "/ecommerce-mern-admin/static/js/2.557aff05.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.92aac231.js",
+    "static/js/2.557aff05.chunk.js",
+    "static/css/main.da4e120a.chunk.css",
+    "static/js/main.4fe15737.chunk.js"
+  ]
+}
