@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Col, Container, Row, Modal, Button } from 'react-bootstrap';
+import { Col, Container, Row, Button } from 'react-bootstrap';
 import Layout from '../../component/Layout'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategory, addCategory } from './../../store/action';
 import Input from "./../../component/UI/Input";
+import Modal from '../../component/UI/Modal';
 
 /**
 * @author
@@ -93,36 +94,30 @@ export const Category = (props) => {
                     </Col>
                 </Row>
             </Container>
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header>
-                    <Modal.Title>Create Category</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Input
-                        value={categoryName}
-                        placeholder="Category Title"
-                        onChange={(e) => setCategoryName(e.target.value)}
-                    />
-                    <select
-                        className="form-control"
-                        onChange={(e) => setParentCategoryId(e.target.value)}
-                        value={parentCategoryId}
-                    >
-                        <option>Select Parent category</option>
-                        {
-                            linierCategories(category.categories)?.map((item, index) => <option key={index} value={item?.value}>{item?.name}</option>)
-                        }
-                    </select>
-                    <input className="form-control mt-3" type="file" name="categoryImage" onChange={(e) => setCategoryImage(e.target.files[0])} />
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={submitData}>
-                        Save
-                    </Button>
-                </Modal.Footer>
+            <Modal
+                show={show}
+                handleClose={handleClose}
+                submitData={submitData}
+                modalTitle={'Create category'}
+            >
+
+                <Input
+                    value={categoryName}
+                    placeholder="Category Title"
+                    onChange={(e) => setCategoryName(e.target.value)}
+                />
+                <select
+                    className="form-control"
+                    onChange={(e) => setParentCategoryId(e.target.value)}
+                    value={parentCategoryId}
+                >
+                    <option>Select Parent category</option>
+                    {
+                        linierCategories(category.categories)?.map((item, index) => <option key={index} value={item?.value}>{item?.name}</option>)
+                    }
+                </select>
+                <input className="form-control mt-3" type="file" name="categoryImage" onChange={(e) => setCategoryImage(e.target.files[0])} />
+
             </Modal>
         </Layout>
     )
