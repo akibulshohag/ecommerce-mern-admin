@@ -105,7 +105,7 @@ export const Products = (props) => {
             <td>Table cell</td>
             <td>Table cell</td>
             <td>Table cell</td>
-            {/* <td>Table cell</td> */}
+            {/* <td>Table </td> */}
           </tr>
         </tbody>
       </Table>
