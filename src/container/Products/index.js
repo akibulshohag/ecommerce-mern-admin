@@ -15,6 +15,8 @@ import Modal from "./../../component/UI/Modal";
 export const Products = (props) => {
 
   const category = useSelector(state => state.category)
+  const products = useSelector(state => state.product)
+  console.log('products===', products);
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState('');
@@ -97,17 +99,22 @@ export const Products = (props) => {
             {/* <th>Table heading</th> */}
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            {/* <td>Table </td> */}
-          </tr>
-        </tbody>
+
+        {
+          products?.products?.length && products?.products?.map((item, index) => (
+            <tbody>
+              <tr>
+                <td>{index + 1}</td>
+                <td>{item.title}</td>
+                <td>{item.regularPrice}</td>
+                <td>{item.quantity}</td>
+                <td>{item.description}</td>
+                <td>{item.category}</td>
+              </tr>
+            </tbody>
+          ))
+        }
+
       </Table>
     )
   }
@@ -126,7 +133,7 @@ export const Products = (props) => {
           </Col>
         </Row>
 
-        <Row style={{marginTop:10}} >
+        <Row style={{ marginTop: 10 }} >
           <Col >
             {renderProductsTable()}
           </Col>
