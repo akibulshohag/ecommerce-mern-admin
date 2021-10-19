@@ -16,7 +16,7 @@ export const Products = (props) => {
 
   const category = useSelector(state => state.category)
   const products = useSelector(state => state.product)
-  console.log('products===', products);
+  // console.log('products===', products);
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState('');
@@ -27,6 +27,9 @@ export const Products = (props) => {
   const [images, setImages] = useState('');
   const [categoryId, setCategoryId] = useState('');
   const [productImage, setProductImage] = useState([]);
+
+  const [productDetailModal, setProductDetailModal] = useState(false);
+
 
 
 
@@ -94,7 +97,7 @@ export const Products = (props) => {
             <th>Title</th>
             <th>Price</th>
             <th>Quantity</th>
-            <th>Description</th>
+            {/* <th>Description</th> */}
             <th>Category</th>
             {/* <th>Table heading</th> */}
           </tr>
@@ -103,12 +106,12 @@ export const Products = (props) => {
         {
           products?.products?.length && products?.products?.map((item, index) => (
             <tbody>
-              <tr>
+              <tr onClick={() => showProductDetailsModal(item)}>
                 <td>{index + 1}</td>
                 <td>{item.title}</td>
                 <td>{item.regularPrice}</td>
                 <td>{item.quantity}</td>
-                <td>{item.description}</td>
+                {/* <td>{item.description}</td> */}
                 <td>{item.category}</td>
               </tr>
             </tbody>
@@ -119,26 +122,8 @@ export const Products = (props) => {
     )
   }
 
-  return (
-    <Layout sidebar>
-      <Container>
-        <Row>
-          <Col md={12}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <h3>Products</h3>
-              <Button variant="secondary" onClick={handleShow}>
-                Add New
-              </Button>
-            </div>
-          </Col>
-        </Row>
-
-        <Row style={{ marginTop: 10 }} >
-          <Col >
-            {renderProductsTable()}
-          </Col>
-        </Row>
-      </Container>
+  const renderAddProductModal = () => {
+    return (
       <Modal
         show={show}
         handleClose={handleClose}
@@ -185,6 +170,53 @@ export const Products = (props) => {
         }
         <input className="form-control mt-3" type="file" name="productImage" onChange={handleProductImage} />
       </Modal>
+    );
+  }
+
+  const handleCloseProductDetailsModal = () => {
+    setProductDetailModal(false);
+  }
+
+  const showProductDetailsModal = (products) => {
+    setProductDetailModal(true)
+    console.log(products);
+  }
+
+  const renderShowProductDetailsModal = () => {
+    return (
+      <Modal
+        show={productDetailModal}
+        handleClose={handleCloseProductDetailsModal}
+        modalTitle={'Product Details'}
+        size="lg"
+      >
+        <p>Product Details Modal</p>
+      </Modal>
+    );
+  }
+
+  return (
+    <Layout sidebar>
+      <Container>
+        <Row>
+          <Col md={12}>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <h3>Products</h3>
+              <Button variant="secondary" onClick={handleShow}>
+                Add New
+              </Button>
+            </div>
+          </Col>
+        </Row>
+
+        <Row style={{ marginTop: 10 }} >
+          <Col >
+            {renderProductsTable()}
+          </Col>
+        </Row>
+      </Container>
+      {renderAddProductModal()}
+      {renderShowProductDetailsModal()}
     </Layout>
   )
 

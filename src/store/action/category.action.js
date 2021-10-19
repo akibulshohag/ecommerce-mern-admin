@@ -6,7 +6,7 @@ export const getAllCategory = () => async dispatch => {
     dispatch({ type: categoryConstansts.GET_ALL_CATEGORIES_REQUEST })
     const res = await axios.get('/category/getAllCategory')
     const { categories } = res.data;
-
+        // console.log('category===',res)
     if (res.status === 200) {
         dispatch({
             type: categoryConstansts.GET_ALL_CATEGORIES_SUCCESS,
