@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategory, addProduct } from './../../store/action';
 import Input from "./../../component/UI/Input";
 import Modal from "./../../component/UI/Modal";
+import './style.css'
+import { generatePublicUrl } from '../../urlConfig';
 
 /**
 * @author
@@ -16,7 +18,7 @@ export const Products = (props) => {
 
   const category = useSelector(state => state.category)
   const products = useSelector(state => state.product)
-  // console.log('products===', products);
+  console.log('products===', products);
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState('');
@@ -29,6 +31,7 @@ export const Products = (props) => {
   const [productImage, setProductImage] = useState([]);
 
   const [productDetailModal, setProductDetailModal] = useState(false);
+  const [productDetails, setproductDetails] = useState(null);
 
 
 
@@ -90,7 +93,7 @@ export const Products = (props) => {
 
   const renderProductsTable = () => {
     return (
-      <Table responsive="sm" striped bordered hover variant="light">
+      <Table style={{ fontSize: 15 }} responsive="sm" striped bordered hover variant="light">
         <thead>
           <tr>
             <th>#</th>
@@ -112,7 +115,7 @@ export const Products = (props) => {
                 <td>{item.regularPrice}</td>
                 <td>{item.quantity}</td>
                 {/* <td>{item.description}</td> */}
-                <td>{item.category}</td>
+                <td>{item.category.name}</td>
               </tr>
             </tbody>
           ))
@@ -178,11 +181,17 @@ export const Products = (props) => {
   }
 
   const showProductDetailsModal = (products) => {
-    setProductDetailModal(true)
-    console.log(products);
+    setproductDetails(products);
+    setProductDetailModal(true);
+
   }
 
   const renderShowProductDetailsModal = () => {
+
+    if (!productDetails) {
+      return null;
+    }
+
     return (
       <Modal
         show={productDetailModal}
@@ -190,7 +199,45 @@ export const Products = (props) => {
         modalTitle={'Product Details'}
         size="lg"
       >
-        <p>Product Details Modal</p>
+        <Row>
+          <Col md="6">
+            <label className="key">Name</label>
+            <p className="value">{productDetails.title}</p>
+          </Col>
+          <Col md="6">
+            <label className="key">Price</label>
+            <p className="value">{productDetails.regularPrice}</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col md="6">
+            <label className="key">Quantity</label>
+            <p className="value">{productDetails.quantity}</p>
+          </Col>
+          <Col md="6">
+            <label className="key">Category</label>
+            <p className="value">{productDetails.category.name}</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col md="12">
+            <label className="key">Description</label>
+            <p className="value">{productDetails.description}</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <label className="key">Product Pictures</label>
+            <div style={{ display: 'flex',justifyContent:'stretch' }}>
+              {productDetails.images.map(item =>
+                <div className="productImgContainer">
+                  <img src={generatePublicUrl(item.img)} />
+                </div>
+              )}
+            </div>
+
+          </Col>
+        </Row>
       </Modal>
     );
   }
